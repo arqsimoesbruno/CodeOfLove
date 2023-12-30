@@ -1,57 +1,30 @@
 var btn = document.querySelector(".no");
-var position = 0;
-var isAnimating = false;
+var position
 
-btn.addEventListener("click", function() {
-    if (!isAnimating) {
-        isAnimating = true;
-        position = position === 0 ? 150 : 0;
-        btn.style.transform = `translate(0px, ${position}px)`;
-        btn.style.transition = "all 0.2s ease";
-
-        setTimeout(function() {
-            isAnimating = false;
-        }, 200);
-    }
-});
-
-btn.addEventListener("mouseover", function() {
-    if (!isAnimating) {
-        isAnimating = true;
-        position = position === 0 ? 150 : 0;
-        btn.style.transform = `translate(0px, ${position}px)`;
-        btn.style.transition = "all 0.2s ease";
-
-        setTimeout(function() {
-            isAnimating = false;
-        }, 200);
-    }
-});
-
-const sim = document.getElementById('yes');
-
-sim.addEventListener("click", () => {
-
-let timerInterval
-Swal.fire({
-  title: 'Obrigado 😍',
-  html: 'Prometo lhe fazer feliz. 💘',
-  timer: 2000,
-  timerProgressBar: true,
-  didOpen: () => {
-    Swal.showLoading()
-    const b = Swal.getHtmlContainer().querySelector('b')
-    timerInterval = setInterval(() => {
-      b.textContent = Swal.getTimerLeft()
-    }, 100)
-  },
-  willClose: () => {
-    clearInterval(timerInterval)
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    btn.addEventListener("touchstart", function() {
+        position ? (position = 0) : (position = 150);
+        btn.style.transform = `translate(${position}px,0px)`;
+        btn.style.transition = "all 0.3s ease";
+      });
+      
+      btn.addEventListener("touchend", function() {
+        position ? (position = 0) : (position = 150);
+        btn.style.transform = `translate(${position}px,0px)`;
+        btn.style.transition = "all 0.3s ease";
+      });
+  } else {
+    btn.addEventListener("mouseover", function() {
+        position ? (position = 0) : (position = 150);
+        btn.style.transform = `translate(${position}px,0px)`;
+        btn.style.transition = "all 0.3s ease";
+        });
   }
-}).then((result) => {
-  if (result.dismiss === Swal.DismissReason.timer) {
-    console.log('I was closed by the timer')
-  }
-})
 
-});
+function tanks() {
+alert("Eu também te amo e aceito casar com vc! :)")
+}  
+
+function not() {
+alert("Você nem ta maluca de não aceitar, volte lá e clique no sim! :/")
+}  
